@@ -1,1 +1,2 @@
-##Integrated_Primary_RPE.rds = Seurat object of the integrated 10x and ICELL8 data from primary RPE. Final Surat object after running
+# Integrated_Primary_RPE.rds = Seurat object of the integrated 10x and ICELL8 data from primary RPE. 
+#     Final Surat object after running Integration_RPE.R code
