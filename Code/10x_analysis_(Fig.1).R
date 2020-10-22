@@ -7,6 +7,7 @@ library(pCalibrate)
 library(ggplot2)
 library(Seurat)
 library(RColorBrewer)
+library(wordcloud)
 
 #####function to generate a useful data.frame from a seurat object
 probs<-function(object) {
@@ -162,6 +163,53 @@ x<-enr.df[(enr.df$Category=="GOBP"),]
 words(x,5,"PRGn")
 
 
+#sessionInfo()
+#R version 4.0.2 (2020-06-22)
+#Platform: x86_64-w64-mingw32/x64 (64-bit)
+#Running under: Windows >= 8 x64 (build 9200)
+
+#Matrix products: default
+
+#locale:
+#[1] LC_COLLATE=English_United States.1252  LC_CTYPE=English_United States.1252    LC_MONETARY=English_United States.1252
+#[4] LC_NUMERIC=C                           LC_TIME=English_United States.1252    
+
+#attached base packages:
+#[1] stats4    parallel  stats     graphics  grDevices utils     datasets  methods   base     
+
+#other attached packages:
+#[1] wordcloud_2.6        RColorBrewer_1.1-2   Seurat_3.2.0         ggplot2_3.3.2        pCalibrate_0.2-1    
+#[6] MCMCpack_1.4-8       MASS_7.3-51.6        coda_0.19-3          exact2x2_1.6.5       exactci_1.3-3       
+#[11] ssanv_1.1            org.Hs.eg.db_3.11.4  AnnotationDbi_1.50.3 IRanges_2.22.2       S4Vectors_0.26.1    
+#[16] Biobase_2.48.0       BiocGenerics_0.34.0  doParallel_1.0.15    iterators_1.0.12     foreach_1.5.0       
+#[21] hypeR_1.4.0         
+
+#loaded via a namespace (and not attached):
+ # [1] plyr_1.8.6            igraph_1.2.5          lazyeval_0.2.2        splines_4.0.2         listenv_0.8.0        
+ # [6] digest_0.6.25         htmltools_0.5.0       magrittr_1.5          memoise_1.1.0         tensor_1.5           
+ #[11] cluster_2.1.0         ROCR_1.0-11           openxlsx_4.1.5        globals_0.12.5        readr_1.3.1          
+ #[16] matrixStats_0.56.0    colorspace_1.4-1      blob_1.2.1            rvest_0.3.6           rappdirs_0.3.1       
+ #[21] ggrepel_0.8.2         xfun_0.16             dplyr_1.0.1           crayon_1.3.4          jsonlite_1.7.0       
+ #[26] spatstat.data_1.4-3   spatstat_1.64-1       survival_3.1-12       zoo_1.8-8             ape_5.4              
+ #[31] glue_1.4.1            kableExtra_1.1.0      polyclip_1.10-0       gtable_0.3.0          webshot_0.5.2        
+ #[36] MatrixModels_0.4-1    leiden_0.3.3          future.apply_1.6.0    abind_1.4-5           SparseM_1.78         
+ #[41] scales_1.1.1          msigdbr_7.1.1         DBI_1.1.0             miniUI_0.1.1.1        Rcpp_1.0.5           
+ #[46] viridisLite_0.3.0     xtable_1.8-4          reticulate_1.16       bit_4.0.3             rsvd_1.0.3           
+ #[51] htmlwidgets_1.5.1     httr_1.4.2            ellipsis_0.3.1        ica_1.0-2             pkgconfig_2.0.3      
+ #[56] farver_2.0.3          uwot_0.1.8            deldir_0.1-28         tidyselect_1.1.0      rlang_0.4.7          
+ #[61] reshape2_1.4.4        later_1.1.0.1         munsell_0.5.0         tools_4.0.2           visNetwork_2.0.9     
+ #[66] generics_0.0.2        RSQLite_2.2.0         ggridges_0.5.2        evaluate_0.14         stringr_1.4.0        
+ #[71] fastmap_1.0.1         goftest_1.2-2         yaml_2.2.1            mcmc_0.9-7            knitr_1.29           
+ #[76] bit64_4.0.2           fitdistrplus_1.1-1    zip_2.0.4             purrr_0.3.4           RANN_2.6.1           
+ #[81] pbapply_1.4-2         future_1.18.0         nlme_3.1-148          reactable_0.2.0       mime_0.9             
+ #[86] quantreg_5.61         xml2_1.3.2            compiler_4.0.2        rstudioapi_0.11       plotly_4.9.2.1       
+ #[91] png_0.1-7             spatstat.utils_1.17-0 tibble_3.0.3          tweenr_1.0.1          stringi_1.4.6        
+ #[96] lattice_0.20-41       Matrix_1.2-18         vctrs_0.3.2           pillar_1.4.6          lifecycle_0.2.0      
+#[101] lmtest_0.9-37         RcppAnnoy_0.0.16      data.table_1.13.0     cowplot_1.0.0         irlba_2.3.3          
+#[106] conquer_1.0.1         httpuv_1.5.4          patchwork_1.0.1       R6_2.4.1              promises_1.1.1       
+#[111] KernSmooth_2.23-17    gridExtra_2.3         codetools_0.2-16      withr_2.2.0           sctransform_0.2.1    
+#[116] mgcv_1.8-31           hms_0.5.3             rpart_4.1-15          grid_4.0.2            tidyr_1.1.1          
+#[121] rmarkdown_2.3         Rtsne_0.15            ggforce_0.3.2         shiny_1.5.0  
 
 
 
