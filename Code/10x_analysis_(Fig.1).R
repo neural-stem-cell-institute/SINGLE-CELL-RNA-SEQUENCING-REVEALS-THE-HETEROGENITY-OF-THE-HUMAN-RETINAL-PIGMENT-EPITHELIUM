@@ -36,19 +36,23 @@ probs<-function(object) {
 
 
 ######load count data after processing and create a Seurat object
-load("~/Desktop/R/10x/BOL14172_dge_raw.Rdata")
-RPE10x <- CreateSeuratObject(counts = dge, project = "RPE10x", min.cells = 3, min.features = 200)
+          
+dge <- read.csv("~/Downloads/GSE158629_RAW/GSM4804660_donor1_raw_counts.txt", sep="")
 
-RPE10x <- PercentageFeatureSet(RPE10x, pattern = "^MT-", col.name = "percent.mt")
-# run sctransform
-RPE10x <- SCTransform(RPE10x, vars.to.regress = "percent.mt", verbose = FALSE)
-RPE10x <- FindVariableFeatures(RPE10x, selection.method = "vst", nfeatures = 2000)
-RPE10x <- RunPCA(RPE10x, features = VariableFeatures(RPE10x), verbose = FALSE)
-RPE10x <- RunUMAP(RPE10x, dims = 1:50, verbose = FALSE)
-RPE10x <- FindNeighbors(RPE10x, dims = 1:50, verbose = FALSE)
-RPE10x <- FindClusters(RPE10x, resolution = 1, verbose = FALSE)
-RPE10x@meta.data$patient<-"4"
-markers.10x<-FindAllMarkers(RPE10x, min.pct = 0.25)
+RNA.10x<-CreateSeuratObject(dge, min.cells = 2, min.features = 100, assay = "RNA", project = "10X")
+RNA.10x <- PercentageFeatureSet(RNA.10x, pattern = "^MT-", col.name = "percent.mt")
+RNA.10x<-subset(RNA.10x, subset = percent.mt < 30)
+
+RNA.10x@meta.data$patient <- "323"
+RNA.10x@meta.data$stage <- "Fresh"
+RNA.10x@meta.data$tech <- "10x"
+
+RNA.10x <- SCTransform(RNA.10x, verbose = FALSE)
+RNA.10x <- FindVariableFeatures(RNA.10x, nfeatures = 3000, verbose = FALSE)
+RNA.10x <- RunPCA(RNA.10x, features = VariableFeatures(RNA.10x), verbose = FALSE)
+RNA.10x <- RunUMAP(RNA.10x, dims = 1:50, reduction='pca', verbose = FALSE)
+RNA.10x <- FindNeighbors(RNA.10x, dims = 1:50, reduction='pca', verbose = FALSE)
+RNA.10x <- FindClusters(RNA.10x, resolution = 0.1, verbose = FALSE)
 
 #### analyze and generate figure panels
 
