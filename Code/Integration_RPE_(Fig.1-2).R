@@ -802,7 +802,6 @@ sessionInfo()
 #[149] lattice_0.20-41             tibble_3.0.3                curl_4.3                    leiden_0.3.3               
 #[153] gtools_3.8.2                zip_2.0.4                   openxlsx_4.1.5              openssl_1.4.2              
 #[157] survival_3.1-12             limma_3.44.3                rmarkdown_2.3               munsell_0.5.0              
-#[161] GenomeInfoDbData_1.2.3      gtable_0.3.0                msigdbr_7.1.1               Rcpp_1.0.5
-
+#[161] GenomeInfoDbData_1.2.3      gtable_0.3.0                msigdbr_7.1.1               
 
 
