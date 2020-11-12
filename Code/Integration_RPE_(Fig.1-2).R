@@ -123,7 +123,26 @@ x<-ser.m.markers[ser.m.markers$p_val_adj<0.1,]
 ser.clust<-foreach(i=0:12) %do% {x[x$cluster==i,]$gene}
 write.csv(x,"Ser.int.markers.csv")
 
+########RPE signiture analysis
 
+x<-read.csv("human_RPE_signature_genes_26517551.csv",as.is=T)
+y<-intersect(rownames(int.obj@assays$SCT@scale.data),x[,1])
+test<-probs(int.obj)
+m<-test[[1]][which((apply(test[[1]][intersect(rownames(test[[1]]),x[,1]),],1,max)>0)),]
+
+z<-heatmap(int.obj@assays$SCT@scale.data[y,])
+DoHeatmap(int.obj,features=rev(y[z$rowInd]))+scale_fill_distiller(palette="RdYlBu")
+
+foreach(i=0:max(as.numeric(levels(int.obj@active.ident))),.combine='c') %do% {
+  length(which(int.obj@active.ident==i))}
+
+m<-foreach(i=1:dim(m)[2]) %do% {names(which(m[,i]>0))}
+
+names(m)<-paste("Cluster",0:12,sep=" ")
+y<-fromList(m)
+
+upset(y,nsets=13,nintersects = NA,
+      matrix.dot.alpha=0.5,order.by="freq")
 
 ######enrichment analysis
 cluster.enr.int.ser<-foreach(i=1:length(ser.clust)) %do% {
@@ -691,6 +710,14 @@ gph10<-graph_from_data_frame(x,directed=F,vertices=z1)
 ####generate other figures
 StackedVlnPlot(obj,features=c("GATA2","GATA1","MYC","BMI1","REST"))
 StackedVlnPlot(obj,features=c("FOXO3","MEF2C","STAT3","CHD7","MYB"))
+DotPlot(int.obj,features=c("RHO","SAG","PDE6A",
+                           "MERTK","GAS6","MFGE8","ITGAV",
+                           "GATA1","MYB","CHEK1","ID2","MKI67","DNMT1",
+                           "MT1G","MT1E","MT3",
+                           "B2M","VEGFA","FGF2","BMP2","BMP4","IGFBP5",
+                           "GNB1","ABCA4","PCP4","MAPT",
+                           "DDX5","SF1","SRSF1"),
+        cols="RdYlBu")
 
 save.image("Integrated RPESC.RData")
 ##########
@@ -732,7 +759,7 @@ sessionInfo()
 #[39] S4Vectors_0.26.1                        Biobase_2.48.0                         
 #[41] BiocGenerics_0.34.0                     doParallel_1.0.15                      
 #[43] iterators_1.0.12                        foreach_1.5.0                          
-#[45] hypeR_1.4.0                            
+#[45] hypeR_1.4.0                             UpSetR_1.4.0
 
 #loaded via a namespace (and not attached):
 #  [1] rappdirs_0.3.1              SparseM_1.78                rtracklayer_1.48.0          cellTree_1.18.0            
@@ -775,7 +802,7 @@ sessionInfo()
 #[149] lattice_0.20-41             tibble_3.0.3                curl_4.3                    leiden_0.3.3               
 #[153] gtools_3.8.2                zip_2.0.4                   openxlsx_4.1.5              openssl_1.4.2              
 #[157] survival_3.1-12             limma_3.44.3                rmarkdown_2.3               munsell_0.5.0              
-#[161] GenomeInfoDbData_1.2.3      gtable_0.3.0                msigdbr_7.1.1     
+#[161] GenomeInfoDbData_1.2.3      gtable_0.3.0                msigdbr_7.1.1               Rcpp_1.0.5
 
 
 
