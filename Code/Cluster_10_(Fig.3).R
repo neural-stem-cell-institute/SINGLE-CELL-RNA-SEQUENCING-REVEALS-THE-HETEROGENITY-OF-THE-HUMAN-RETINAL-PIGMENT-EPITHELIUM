@@ -16,7 +16,7 @@ library(dplyr)
 library(igraph)
 library(mgcv)
 
-###Analysis of cluster 10 sing the ICELL8 data
+###Analysis of cluster 10 using the ICELL8 data
 ###first map integrated clusters onto ICELL8 object
 obj<-ICELL8.nomac
 x<-int.obj@active.ident[grep("cell_",names(int.obj@active.ident))]
@@ -124,7 +124,7 @@ TFS<-setdiff(TFS[,2],RIBO[,2])
 TFS<-setdiff(TFS,PROT[,2])
 TFS<-intersect(TFS,nuc[,2])
 
-############make a new graph object for export to cytoscape
+############make a new graph object for export to cytoscape and use semantic analsyis to get community descriptions
 z<-foreach(i=1:length(x)) %do% {
   print(i)
   y<-rownames(community_cl10.data[[i]][[2]])
