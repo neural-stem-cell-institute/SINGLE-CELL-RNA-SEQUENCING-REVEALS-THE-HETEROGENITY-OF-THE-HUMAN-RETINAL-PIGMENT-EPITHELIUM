@@ -3,10 +3,12 @@
 library(foreach)
 library(ggplot2)
 
+####read in to sesssion, clean data frame, prep for figure generation
 trees<-data.frame(read.csv("result_trees.csv",as.is=T))
 trees$ID<-as.character(trees$X)
 trees<-trees[,-1]
 trees$Asymmetric<-as.character(trees$Asymmetric)
+
 
 y<-expand.grid(y=1:10,x=1:16)
 z<-round(table(as.factor(trees$Generations)) * ((10*16)/(length(as.factor(trees$Generations)))))
@@ -15,7 +17,7 @@ y$Generations<-factor(rep(names(z), z))
 y$Cells<-trees[order(trees$Generations),]$Cells_produced
 
 
-
+######make figures
 p<-ggplot(y, aes(x=x, y=y, fill=Generations))
 p<-p + geom_tile(color = "black", size = 0.5)
 p<-p + geom_text(aes(label=Cells))
