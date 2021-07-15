@@ -10,7 +10,7 @@ library(liger)
 library(dplyr)
 library(plyr)
 
-load("/Volumes/Farhad_RPE/R/Paper_figures/ICELL8-nomac.RData")
+load("/ICELL8-nomac.RData")
 
 c.names<-ICELL8.nomac$seurat_clusters
 # c.names<-mapvalues(c.names, from = 0:11, to = LETTERS[9:(8+length(levels(c.names)))])
@@ -34,7 +34,7 @@ foreach(i=0:(length(levels(obj$seurat_clusters))-1),.combine='c') %do% {
 }
 
 
-x<-read.csv("/Users/Feri/Downloads/human_RPE_signature_genes_26517551.csv",as.is=T)
+x<-read.csv("/human_RPE_signature_genes_26517551.csv",as.is=T)
 y<-intersect(rownames(obj@assays$SCT@scale.data),x[,1])
 z<-setdiff(x[,1],y)
 
