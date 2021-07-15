@@ -710,14 +710,14 @@ gph10<-graph_from_data_frame(x,directed=F,vertices=z1)
 ####generate other figures
 StackedVlnPlot(obj,features=c("GATA2","GATA1","MYC","BMI1","REST"))
 StackedVlnPlot(obj,features=c("FOXO3","MEF2C","STAT3","CHD7","MYB"))
-DotPlot(int.obj,features=c("RHO","SAG","PDE6A",
-                           "MERTK","GAS6","MFGE8","ITGAV",
-                           "GATA1","MYB","CHEK1","ID2","MKI67","DNMT1",
-                           "MT1G","MT1E","MT3",
-                           "B2M","VEGFA","FGF2","BMP2","BMP4","IGFBP5",
-                           "GNB1","ABCA4","PCP4","MAPT",
-                           "DDX5","SF1","SRSF1"),
-        cols="RdYlBu")
+DotPlot(int.obj,features=c("VEGFA", "FGF2", "IGFBP5","BMP2","BMP4",
+                           "MT1G", "MT1E", "ITGAV", "MT3",
+                           "RHO","SAG","ABCA4","PDE6G", "PDE6A","GNAT1","RCVRN",
+                           "MPP4","MERTK", "GAS6","MFGE8",
+                           "GATA1","GATA2","ID2","MYB","DNMT1",
+                           "MKI67","CHEK1","B2M","HBG1","HBG2","VSX2",
+                           "PRKAR2B"
+                           ),scale.max = 100,cols="RdYlBu",)+ theme(axis.text.x = element_text(angle = 90))
 
 save.image("Integrated RPESC.RData")
 ##########
